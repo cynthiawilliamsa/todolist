@@ -6,10 +6,11 @@
 import React, { Component } from 'react'
 import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField'
+// import Task from './Components/task/Task';
 //css import only needed in main app.js
 class ToDoList extends Component {
   state = {
-    inputValue: '',
+    inputValue: '',    
     list: []
   };
  handleChange = (e) => {   
@@ -18,26 +19,23 @@ class ToDoList extends Component {
   }  
   handleAddSubmit= (e)=>{
     //on click pass handle function into component    
-    e.preventDefault() ;
-    // console.log('click', this.state.inputValue);
-    //take input value and put it in the list
-    const newList = this.state.list.slice();
-    newList.push(this.state.inputValue);
-    // console.log(newList);
-    this.setState({list: newList}) //updating state
+    e.preventDefault() ;   
+    this.setState({list: [...this.state.list, this.state.inputValue], inputValue: ''}) //updating state using spread operator
   }
   handleDelete= (e) => {
     e.preventDefault();
-    const listDelete = this.state.list.slice();
-    console.log("click")
-    this.setState({list: listDelete});
+    const filteredList = this.state.list.slice(e, 1) 
+    this.setState({list: filteredList});   
+    console.log(filteredList);       
   }
+  
+  
   renderList() {
     //shows the list
     return this.state.list.map((item, index)=> {
       return <li style= {{listStyleType: "none", padding: 8}} >{item}<Button style={{marginLeft: 10}} onClick={this.handleDelete} type="submit">X</Button></li>
     })
-  }
+  }  
   render() {
     return (
       //must be one main element for render to occur

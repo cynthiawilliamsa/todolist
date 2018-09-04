@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import './App.css';
 import NavBar from './Components/navbar/NavBar';
 import ToDoList from './Components/todolist/ToDoList';
+import Task from './Components/task/Task';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 
 
